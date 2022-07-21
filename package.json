@@ -1,0 +1,51 @@
+{
+  "name": "walnut-web-app",
+  "version": "6.1.0",
+  "type": "commonjs",
+  "description": "Bring your WebApp into effect outside of Telegram WebView",
+  "repository": "git+https://github.com/miku3920/walnut-web-app.git",
+  "author": "miku3920 <papa964204@gmail.com>",
+  "keywords": [
+    "telegram",
+    "miku",
+    "walnut",
+    "webapp"
+  ],
+  "main": "./dist/walnut.js",
+  "module": "./dist/walnut.mjs",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/walnut.js",
+      "import": "./dist/walnut.mjs",
+      "types": "./index.d.ts"
+    }
+  },
+  "scripts": {
+    "lint": "eslint . --ext .js,.mjs,cjs --fix --ignore-path .gitignore",
+    "build": "npm run pack & npm run fix",
+    "test": "npm run test-cjs & npm run test-cjs-default & npm run test-cjs-min & npm run test-cjs-min-default & npm run test-esm & npm run test-esm-default & npm run test-esm-min & npm run test-esm-min-default",
+    "test-cjs": "cross-env TYPE=walnut node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test-cjs-default": "cross-env TYPE=walnutDefault node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test-cjs-min": "cross-env TYPE=walnutMin node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test-cjs-min-default": "cross-env TYPE=walnutMinDefault node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test-esm": "cross-env TYPE=walnutESM node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test-esm-default": "cross-env TYPE=walnutESMDefault node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test-esm-min": "cross-env TYPE=walnutESMMin node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test-esm-min-default": "cross-env TYPE=walnutESMMinDefault node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "pack": "webpack",
+    "fix": "node bin/fix-export.js"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^8.20.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^28.1.3",
+    "jest-environment-jsdom": "^28.1.3",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,1 @@
+!function(t,e){"object"==typeof exports?(module.exports=e(),exports.utils=module.exports.utils,exports.event=module.exports.event):"function"==typeof define&&define.amd?define([],e):t.walnut=e()}(self,(()=>{

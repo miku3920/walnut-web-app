@@ -1,0 +1,10 @@
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object')
+		module.exports = factory(),
+		exports.utils = module.exports.utils,
+		exports.event = module.exports.event;
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else
+		root["walnut"] = factory();
+})(self, () => {
