@@ -16,7 +16,7 @@ const searchMin = fs.readFileSync(path.join(__dirname, './search.min.txt'), 'utf
 const replaceMin = fs.readFileSync(path.join(__dirname, './replace.min.txt'), 'utf8')
 const dataFixMin = dataMin.replace(searchMin, replaceMin)
 
-fs.writeFileSync(path.join(__dirname, '../dist/walnut.min.js'), dataFixMin)
-
 // eslint-disable-next-line no-console
 console.log('\n', dataMin.substring(0, 204), '\n', dataFixMin.substring(0, 207))
+
+fs.writeFileSync(path.join(__dirname, '../dist/walnut.min.js'), dataFixMin)

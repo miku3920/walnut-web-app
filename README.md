@@ -78,7 +78,7 @@ walnut.utils.setup({
     auth_date: Date.now(),
     token: '1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZ',
   },
-  Version: '6.1',
+  Version: '6.2',
   ThemeParams: {
     bg_color: '#ffffff',
     button_color: '#40a7e3',
@@ -118,7 +118,7 @@ walnut.utils.setup({
 | Field       | Type                                                              | Description                                                                                                                                                            |
 | ----------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Data        | [SetupData](#setupdata)                                           | _Optional._ This object contains data that is transferred to the Web App when it is opened.                                                                            |
-| Version     | String                                                            | _Optional._ The version of the Bot API available in the user's Telegram app. Set to _6.1_ by default.                                                                  |
+| Version     | String                                                            | _Optional._ The version of the Bot API available in the user's Telegram app. Set to _6.2_ by default.                                                                  |
 | ThemeParams | [ThemeParams](https://core.telegram.org/bots/webapps#themeparams) | _Optional._ Web Apps can adjust the appearance of the interface to match the Telegram user's app in real time. This object contains the user's current theme settings. |
 | Debug       | Boolean                                                           | _Optional._ Make the MainButton visible outside of Telegram WebView. Set to _true_ by default.                                                                         |
 
@@ -131,7 +131,7 @@ walnut.utils.setup({
 | receiver       | [WebAppUser](https://core.telegram.org/bots/webapps#webappuser) | _Optional._ An object containing data about the chat partner of the current user in the chat where the bot was launched via the attachment menu.                                |
 | chat           | [WebAppChat](https://core.telegram.org/bots/webapps#webappchat) | _Optional._ An object containing data about the chat where the bot was launched via the attachment menu.                                                                        |
 | start_param    | string                                                          | _Optional._ The value of the startattach parameter, passed via link.                                                                                                            |
-| can_send_after | number                                                          | _Optional._ Time in seconds, after which a message can be sent via the [answerWebAppQuery](https://core.telegram.org/bots/api#answerwebappquery) method.                        |
+| can_send_after | number                                                          | _Optional._ Fake time in seconds. Message cannot be sent via the [answerWebAppQuery](https://core.telegram.org/bots/api#answerwebappquery) method for any length of time.     |
 | auth_date      | number                                                          | _Optional._ Unix time when the form was opened.                                                                                                                                 |
 | token          | string                                                          | _Optional._ Any token that is the same as you use for server-side validation                                                                                                    |
 
@@ -147,7 +147,7 @@ walnut.event.on('all', (e) => {
 })
 
 // e.post inside of Telegram WebView
-// -> post event to Telegram
+TelegramWebviewProxy.postEvent(e.type, e.data)
 
 // e.post outside of Telegram WebView
 console.log('[Walnut.debug] postEvent', e.type, e.data)

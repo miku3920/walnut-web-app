@@ -1,6 +1,6 @@
 {
   "name": "walnut-web-app",
-  "version": "6.1.0",
+  "version": "6.2.0",
   "type": "commonjs",
   "description": "Bring your WebApp into effect outside of Telegram WebView",
   "repository": "git+https://github.com/miku3920/walnut-web-app.git",

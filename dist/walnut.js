@@ -616,7 +616,7 @@ function setup(option) {
   };
   option.Data.auth_date = option.Data.auth_date || Date.now();
   option.Data.token = option.Data.token || '1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  option.Version = option.Version || '6.1';
+  option.Version = option.Version || '6.2';
   option.ThemeParams = option.ThemeParams || {
     bg_color: '#ffffff',
     button_color: '#40a7e3',
