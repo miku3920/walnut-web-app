@@ -1,4 +1,4 @@
-[![build](https://img.shields.io/github/workflow/status/miku3920/walnut-web-app/Github%20Actions)](https://github.com/miku3920/walnut-web-app) [![npm](https://img.shields.io/npm/v/walnut-web-app)](https://www.npmjs.com/package/walnut-web-app) [![cdnjs](https://img.shields.io/cdnjs/v/walnut-web-app)](https://cdnjs.com/libraries/walnut-web-app) [![minified size](https://img.shields.io/bundlephobia/min/walnut-web-app)](https://cdnjs.com/libraries/walnut-web-app) [![license](https://img.shields.io/github/license/miku3920/walnut-web-app)](https://github.com/miku3920/walnut-web-app/blob/main/LICENSE)
+[![build](https://img.shields.io/github/actions/workflow/status/miku3920/walnut-web-app/github-actions.yml?branch=main)](https://github.com/miku3920/walnut-web-app) [![npm](https://img.shields.io/npm/v/walnut-web-app)](https://www.npmjs.com/package/walnut-web-app) [![cdnjs](https://img.shields.io/cdnjs/v/walnut-web-app)](https://cdnjs.com/libraries/walnut-web-app) [![minified size](https://img.shields.io/bundlephobia/min/walnut-web-app)](https://cdnjs.com/libraries/walnut-web-app) [![license](https://img.shields.io/github/license/miku3920/walnut-web-app)](https://github.com/miku3920/walnut-web-app/blob/main/LICENSE)
 
 # walnut-web-app
 
@@ -9,16 +9,16 @@ Bring your WebApp into effect outside of Telegram WebView.
 - [General Information](#general-information)
 - [Setup](#setup)
 - [Usage](#usage)
-- [Settings](#settings)
+- [Configuration](#configuration)
 - [Contact](#contact)
 
 ## General Information
 
-This package achieves something otherwise impossible by intervening between WebView and WebApp.
+This package achieves something otherwise impossible by intervening between WebView and WebApp. It makes the testing process significantly smoother.
 
 ![Schematic](https://github.com/miku3920/walnut-web-app/blob/main/images/Schematic.png?raw=true)
 
-If you can draw better, please draw one for me.
+I would greatly appreciate it if you could create a drawing for me, especially if it's done with more skill.
 
 ## Setup
 
@@ -28,7 +28,7 @@ $ npm i -D walnut-web-app
 
 ## Usage
 
-`walnut-web-app` import should occur before import Telegram, because walnut cheats the WebApp by modifying location.hash. Accordingly, it does work outside of Telegram WebView.
+To ensure proper operation, `walnut-web-app` must be imported before Telegram. This is because it alters the location.hash to enable the WebApp to function outside of Telegram WebView.
 
 ```javascript
 // destructured import
@@ -39,9 +39,9 @@ import * as walnut from 'walnut-web-app'
 import walnut from 'walnut-web-app'
 ```
 
-Here are two ways to use `walnut-web-app`:
+Here are two options for using `walnut-web-app`:
 
-1. Only import package without other settings (use default settings):
+1. Simply import the package without any additional configurations (utilizing the default settings):
 
 ```javascript
 // main.js
@@ -51,7 +51,7 @@ import router from '@/router'
 import App from './App.vue'
 ```
 
-2. Import and make some settings:
+2. Import the package and make custom configurations:
 
 ```javascript
 // main.js
@@ -78,7 +78,8 @@ walnut.utils.setup({
     auth_date: Date.now(),
     token: '1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZ',
   },
-  Version: '6.2',
+  Version: '6.4',
+  Platform: 'tdesktop',
   ThemeParams: {
     bg_color: '#ffffff',
     button_color: '#40a7e3',
@@ -99,13 +100,13 @@ walnut.event.on('all', (e) => {
 })
 ```
 
-## Settings
+## Configuration
 
-If not set, the default value as above will be used.
+Customize settings as desired: If you don't specify any settings, the default values will be used.
 
 ### setup
 
-You can fix the time like this:
+This technique allows you to lock in a specific time:
 
 ```javascript
 walnut.utils.setup({
@@ -118,7 +119,8 @@ walnut.utils.setup({
 | Field       | Type                                                              | Description                                                                                                                                                            |
 | ----------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Data        | [SetupData](#setupdata)                                           | _Optional._ This object contains data that is transferred to the Web App when it is opened.                                                                            |
-| Version     | String                                                            | _Optional._ The version of the Bot API available in the user's Telegram app. Set to _6.2_ by default.                                                                  |
+| Version     | String                                                            | _Optional._ The version of the Bot API available in the user's Telegram app. Set to _6.4_ by default.                                                                  |
+| Platform    | String                                                            | _Optional._ The name of the platform of the user's Telegram app. Set to _tdesktop_ by default.                                                                         |
 | ThemeParams | [ThemeParams](https://core.telegram.org/bots/webapps#themeparams) | _Optional._ Web Apps can adjust the appearance of the interface to match the Telegram user's app in real time. This object contains the user's current theme settings. |
 | Debug       | Boolean                                                           | _Optional._ Make the MainButton visible outside of Telegram WebView. Set to _true_ by default.                                                                         |
 
@@ -131,15 +133,15 @@ walnut.utils.setup({
 | receiver       | [WebAppUser](https://core.telegram.org/bots/webapps#webappuser) | _Optional._ An object containing data about the chat partner of the current user in the chat where the bot was launched via the attachment menu.                                |
 | chat           | [WebAppChat](https://core.telegram.org/bots/webapps#webappchat) | _Optional._ An object containing data about the chat where the bot was launched via the attachment menu.                                                                        |
 | start_param    | string                                                          | _Optional._ The value of the startattach parameter, passed via link.                                                                                                            |
-| can_send_after | number                                                          | _Optional._ Fake time in seconds. Message cannot be sent via the [answerWebAppQuery](https://core.telegram.org/bots/api#answerwebappquery) method for any length of time.     |
+| can_send_after | number                                                          | _Optional._ Fake time in seconds. Message cannot be sent via the [answerWebAppQuery](https://core.telegram.org/bots/api#answerwebappquery) method for any length of time.       |
 | auth_date      | number                                                          | _Optional._ Unix time when the form was opened.                                                                                                                                 |
 | token          | string                                                          | _Optional._ Any token that is the same as you use for server-side validation                                                                                                    |
 
 ### event
 
-If not set, the `default` event as above will be used. You can set your own event to replace the original. The `all` event will be executed on any event.
+If no event handler is set, the `default` event handler will be used to handle all events. The `all` event handler, on the other hand, will handle all events, regardless of the specific event handler being set or not.
 
-Use `e.post()` to execute the original event:
+If you want to trigger the original event, use the `e.post()` method:
 
 ```javascript
 walnut.event.on('all', (e) => {
@@ -153,27 +155,30 @@ TelegramWebviewProxy.postEvent(e.type, e.data)
 console.log('[Walnut.debug] postEvent', e.type, e.data)
 ```
 
-| eventType                         |
-| --------------------------------- |
-| `default`                         |
-| `all`                             |
-| `web_app_setup_closing_behavior`  |
-| `web_app_set_header_color`        |
-| `web_app_set_background_color`    |
-| `web_app_setup_back_button`       |
-| `web_app_setup_main_button`       |
-| `web_app_trigger_haptic_feedback` |
-| `web_app_data_send`               |
-| `web_app_open_link`               |
-| `web_app_open_tg_link`            |
-| `web_app_open_invoice`            |
-| `web_app_open_popup`              |
-| `web_app_ready`                   |
-| `web_app_expand`                  |
-| `web_app_close`                   |
-| `web_app_request_theme`           |
-| `web_app_request_viewport`        |
+| eventType                          |
+| ---------------------------------- |
+| `default`                          |
+| `all`                              |
+| `web_app_setup_closing_behavior`   |
+| `web_app_set_header_color`         |
+| `web_app_set_background_color`     |
+| `web_app_setup_back_button`        |
+| `web_app_setup_main_button`        |
+| `web_app_trigger_haptic_feedback`  |
+| `web_app_data_send`                |
+| `web_app_open_link`                |
+| `web_app_open_tg_link`             |
+| `web_app_open_invoice`             |
+| `web_app_open_popup`               |
+| `web_app_open_scan_qr_popup`       |
+| `web_app_close_scan_qr_popup`      |
+| `web_app_read_text_from_clipboard` |
+| `web_app_ready`                    |
+| `web_app_expand`                   |
+| `web_app_close`                    |
+| `web_app_request_theme`            |
+| `web_app_request_viewport`         |
 
 ## Contact
 
-Created by [@miku3920](https://t.me/miku3920) - feel free to contact me if you have any problems!
+Created by [@miku3920](https://t.me/miku3920). Feel free to contact me if you have any questions or run into any issues!

@@ -516,6 +516,7 @@ function urlStringifyHashString(params) {
   const debugString = params.Debug ? '1' : ''
   const themeString = JSON.stringify(params.ThemeParams)
   const versionString = `${params.Version}`
+  const platformString = `${params.Platform}`
   const dataParams = stringifyDataParams(params.Data)
   dataParams.hash = createVerificationHash(dataParams)
 
@@ -524,6 +525,7 @@ function urlStringifyHashString(params) {
   const queryParams = {
     tgWebAppData: dataString,
     tgWebAppVersion: versionString,
+    tgWebAppPlatform: platformString,
     tgWebAppThemeParams: themeString,
   }
 
@@ -546,7 +548,8 @@ function setup(option) {
   }
   option.Data.auth_date = option.Data.auth_date || Date.now()
   option.Data.token = option.Data.token || '1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  option.Version = option.Version || '6.2'
+  option.Version = option.Version || '6.4'
+  option.Platform = option.Platform || 'tdesktop'
   option.ThemeParams = option.ThemeParams || {
     bg_color: '#ffffff',
     button_color: '#40a7e3',

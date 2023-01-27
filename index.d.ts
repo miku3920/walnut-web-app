@@ -21,7 +21,7 @@ declare namespace walnut {
   interface WebAppUser {
     id: number,
     is_bot?: boolean,
-    first_name?: string,
+    first_name: string,
     last_name?: string,
     username?: string,
     language_code?: string,
@@ -86,6 +86,7 @@ declare namespace walnut {
   interface Setup {
     Data?: SetupData,
     Version?: string,
+    Platform?: string,
     ThemeParams?: ThemeParams,
     Debug?: boolean,
   }
@@ -96,7 +97,7 @@ declare namespace walnut {
     post: () => void
   }
 
-  type eventType = 'default' | 'all' | 'web_app_setup_closing_behavior' | 'web_app_set_header_color' | 'web_app_set_background_color' | 'web_app_setup_back_button' | 'web_app_setup_main_button' | 'web_app_trigger_haptic_feedback' | 'web_app_data_send' | 'web_app_open_link' | 'web_app_open_tg_link' | 'web_app_open_invoice' | 'web_app_open_popup' | 'web_app_ready' | 'web_app_expand' | 'web_app_close' | 'web_app_request_theme' | 'web_app_request_viewport'
+  type eventType = 'default' | 'all' | 'web_app_setup_closing_behavior' | 'web_app_set_header_color' | 'web_app_set_background_color' | 'web_app_setup_back_button' | 'web_app_setup_main_button' | 'web_app_trigger_haptic_feedback' | 'web_app_data_send' | 'web_app_open_link' | 'web_app_open_tg_link' | 'web_app_open_invoice' | 'web_app_open_popup' | 'web_app_open_scan_qr_popup' | 'web_app_close_scan_qr_popup' | 'web_app_read_text_from_clipboard' | 'web_app_ready' | 'web_app_expand' | 'web_app_close' | 'web_app_request_theme' | 'web_app_request_viewport'
 
   type JsonString = string
   type TelegramInitString = string
